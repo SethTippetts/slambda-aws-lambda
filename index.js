@@ -12,13 +12,12 @@ const Batch = slambdaUtils.Batch;
 const compile = slambdaUtils.compile;
 const bundle = slambdaUtils.bundle;
 
-aws-sdk slambda-utils bluebird archiver lodash.get
 AWS.config.setPromisesDependency(Bluebird);
 
 module.exports = class AWSLambda {
   constructor(options) {
-    let region = options.aws.region;
-    let Bucket = options.aws.s3.bucket;
+    let region = options.region;
+    let Bucket = options.s3.bucket;
     this.bucket = Bucket;
     this.options = options;
     this.lambda = new AWS.Lambda({ region });
@@ -34,9 +33,7 @@ module.exports = class AWSLambda {
     let Key = `${container.id}.zip`;
     let prefix = get(this, 'options', 'aws', 's3', 'prefix');
     if (prefix) Key = `${prefix}/${Key}`;
-    console.log(Key, Body);
-    // console.log(body);
-    // return Bluebird.resolve(body)
+
     return Bluebird.fromCallback(cb => {
       let req = this.s3
         .upload({
@@ -56,10 +53,10 @@ module.exports = class AWSLambda {
   }
 
   execute(id, calls) {
-    return this.service.invoke({
-      FunctionName: id,
-      InnvocationType: 'RequestResponse',
-      Payload: calls,
+    return this.lambda.invoke({
+      FunctionName: id.replace(/\W+/, '-'),
+      InvocationType: 'RequestResponse',
+      Payload: JSON.stringify(calls),
     }).promise();
   }
 }
