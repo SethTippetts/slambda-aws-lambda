@@ -3,6 +3,10 @@
   "version": "0.0.2",
   "description": "Slambda execution plugin for AWS Lambda",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SethTippetts/slambda-aws-lambda.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
