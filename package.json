@@ -13,8 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^1.0.0",
     "bluebird": "^3.4.1",
+    "debug": "^2.2.0",
     "lodash.get": "^4.3.0",
-    "slambda-utils": "^1.0.0"
+    "slambda": "^0.1.0",
+    "slambda-local": "^0.1.0"
   }
 }

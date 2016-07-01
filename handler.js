@@ -3,11 +3,9 @@
 
 const execute = require('./execute');
 
-const initialize = execute.init();
-
 module.exports.handler = (event, context, cb) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  initialize
+  execute.init
     .then(ctx => {
       execute
         .main(event, ctx)
