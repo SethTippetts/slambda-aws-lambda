@@ -1,6 +1,6 @@
 {
   "name": "slambda-aws-lambda",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Slambda execution plugin for AWS Lambda",
   "main": "index.js",
   "repository": {
